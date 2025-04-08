@@ -8,29 +8,25 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const docRef = doc(db, 'products', id); 
-        const docSnap = await getDoc(docRef);
 
-        if (docSnap.exists()) {
-          setProduct({ id: docSnap.id, ...docSnap.data() });
-        } else {
-          console.log('Not found');
-        }
-      } catch (error) {
-        console.error('Error', error);
-      } finally {
-        setLoading(false);
+  useEffect(() => {  // Ask for ID Product
+    
+    getDoc(doc(db, 'products', id)).then((docSnap) => {
+  
+      if (docSnap.exists()) {
+        setProduct({ id: docSnap.id, ...docSnap.data() }); //Save in state if exist
+      } else {
+        console.log('Product not found');
       }
-    };
-
-    fetchProduct();
+  
+      // stop showing Loading..
+      setLoading(false);
+    });
   }, [id]);
 
+  // LOCALSTORAGE
   const addCarrito = () => {
-    const saveCarrito = JSON.parse(localStorage.getItem("carrito")) 
+    const saveCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
   
     saveCarrito.push(product);
     localStorage.setItem("carrito", JSON.stringify(saveCarrito));
@@ -40,17 +36,18 @@ const ProductDetails = () => {
   if (loading) return <p>Loading...</p>;
   if (!product) return <p>Not found sorry..</p>;
 
+
   return (
     <>
       <div>
         <Link to="/" className="back-btn">🪴 Back</Link>
       </div>
       <h1 className="title-card">Plant Details 🍃</h1>
-      <div className="product-info">
-          <p><strong> 🍀  Name:</strong> {product.name}</p>
+      <div className="details-info">
+          <p><strong>Name:</strong> {product.name}</p>
           <p><strong>Description:</strong> {product.description}</p>
           <p><strong>Category:</strong> {product.category}</p>
-        <button onClick={addCarrito}>
+        <button onClick={addCarrito} className='details-btn'>
         🛒 Add
         </button>
       </div>

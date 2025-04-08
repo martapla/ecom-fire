@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-     <h2>Ecommerce  🔥 Firebase</h2>
+     {/* <h2>Ecommerce  🔥 Firebase</h2> */}
 
      <BrowserRouter>
         <Routes>
