@@ -8,19 +8,19 @@ import Layout from './components/Layout'
 
 function App() {
 
-  const {data,loading,error} = useFireBaseFetch()
+  const {data,loading,error, handleFilter, filterPlants} = useFireBaseFetch()
  
   if (loading) return <h3 className='loading'>Loading...</h3>;
   if (error) return <h3>Error: {error}</h3>;
 
+
   return (
     <>
-     {/* <h2>Ecommerce  🔥 Firebase</h2> */}
 
      <BrowserRouter>
         <Routes>
             <Route path="/" element={<Layout />}>
-                <Route index element={<ProductList products={data} />} />
+                <Route index element={<ProductList products={filterPlants} handleFilter={handleFilter}/>} />
                 <Route path="product/:id" element={<ProductDetails />} />
                 <Route path="cart" element={<Cart />} />
             </Route>

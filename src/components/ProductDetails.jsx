@@ -43,13 +43,16 @@ const ProductDetails = () => {
         <Link to="/" className="back-btn">🪴 Back</Link>
       </div>
       <h1 className="title-card">Plant Details 🍃</h1>
-      <div className="details-info">
-          <p><strong>Name:</strong> {product.name}</p>
-          <p><strong>Description:</strong> {product.description}</p>
-          <p><strong>Category:</strong> {product.category}</p>
-        <button onClick={addCarrito} className='details-btn'>
-        🛒 Add
-        </button>
+      <div className="details-card">
+          <div className="details-info">
+              <p><strong>Name:</strong> {product.name}</p>
+              <p><strong>Description:</strong> {product.description}</p>
+              <p><strong>Category:</strong> {product.category}</p>
+              <p><strong>Price:</strong> {product.price}</p>
+              <button onClick={addCarrito} className='add-btn'>
+                🛒 Add
+              </button>
+          </div>
       </div>
     </>
   );
