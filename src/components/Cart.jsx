@@ -21,8 +21,8 @@ const Cart = () => {
         <p>Is empty.. 🫤</p>
       ) : (
         carrito.map((item, index) => (
-          <div className="details-card">
-            <div key={index} className="details-info">
+          <div key={index} className="details-card">
+            <div className="details-info">
               <p><strong>Name:</strong> {item.name}</p>
               <p><strong>Description:</strong> {item.description}</p>
               <p><strong>Category:</strong> {item.category}</p>
